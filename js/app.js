@@ -14,8 +14,19 @@ var App = {
 
   // ============ 初始化 ============
   init: function () {
+    this.initTheme();
     this.bindEvents();
     this.showScreen("home");
+  },
+
+  // ============ 深色模式初始化 ============
+  initTheme: function () {
+    var saved = localStorage.getItem("eq-test-theme");
+    if (saved === "dark") {
+      document.documentElement.setAttribute("data-theme", "dark");
+      var btn = document.getElementById("theme-toggle");
+      if (btn) btn.textContent = "☀️";
+    }
   },
 
   // ============ 事件绑定 ============
@@ -46,6 +57,14 @@ var App = {
     document.getElementById("btn-home").addEventListener("click", function () {
       self.showScreen("home");
     });
+
+    // 深色模式切换
+    var themeBtn = document.getElementById("theme-toggle");
+    if (themeBtn) {
+      themeBtn.addEventListener("click", function () {
+        self.toggleTheme();
+      });
+    }
   },
 
   // ============ 屏幕切换 ============
@@ -56,6 +75,21 @@ var App = {
     document.getElementById("screen-result").classList.add("hidden");
     document.getElementById("screen-" + screen).classList.remove("hidden");
     window.scrollTo({ top: 0, behavior: "smooth" });
+  },
+
+  // ============ 深色模式切换 ============
+  toggleTheme: function () {
+    var html = document.documentElement;
+    var btn = document.getElementById("theme-toggle");
+    if (html.getAttribute("data-theme") === "dark") {
+      html.removeAttribute("data-theme");
+      if (btn) btn.textContent = "🌙";
+      localStorage.setItem("eq-test-theme", "light");
+    } else {
+      html.setAttribute("data-theme", "dark");
+      if (btn) btn.textContent = "☀️";
+      localStorage.setItem("eq-test-theme", "dark");
+    }
   },
 
   // ============ 开始测评 ============
@@ -111,7 +145,7 @@ var App = {
   renderQuestion: function (q, index) {
     var letters = ["A", "B", "C", "D"];
     var selectedIdx = this.state.answers[q.id];
-    var html = '<div class="question-card fade-in-up">';
+    var html = '<div class="question-card">';
     html += '<div class="q-number">第 ' + (index + 1) + ' 题 <span style="color:var(--text-muted)">| ' + q.category + '</span></div>';
     html += '<div class="q-scenario">' + this.escapeHtml(q.scenario) + '</div>';
     html += '<div class="q-text">' + this.escapeHtml(q.question) + '</div>';

@@ -12,6 +12,7 @@
 
     <!-- ============ 页头 ============ -->
     <header class="app-header">
+      <button class="theme-toggle" id="theme-toggle" aria-label="切换深色/浅色模式" title="切换深色/浅色模式">🌙</button>
       <span class="logo-icon">🏮</span>
       <h1>人情世故情商测评</h1>
       <p class="subtitle">中国式社交智慧自检</p>
@@ -96,11 +97,11 @@
         </div>
         <div class="score-circle-card">
           <h3 style="margin-bottom:12px;color:var(--text-secondary);font-size:14px;">评级定位</h3>
-          <div style="display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:16px;">
-            <span style="background:#FFF5ED;padding:6px 14px;border-radius:20px;font-size:12px;color:var(--primary-dark);border:1px solid var(--border);">🏆 人情通透高手</span>
-            <span style="background:#FFFDF8;padding:6px 14px;border-radius:20px;font-size:12px;color:var(--text-muted);border:1px solid var(--border-light);">👍 处事稳妥普通人</span>
-            <span style="background:#FFFDF8;padding:6px 14px;border-radius:20px;font-size:12px;color:var(--text-muted);border:1px solid var(--border-light);">🎭 讨好型老好人</span>
-            <span style="background:#FFFDF8;padding:6px 14px;border-radius:20px;font-size:12px;color:var(--text-muted);border:1px solid var(--border-light);">🌵 直性子不懂人情</span>
+          <div class="rating-tags">
+            <span class="rating-tag active">🏆 人情通透高手</span>
+            <span class="rating-tag">👍 处事稳妥普通人</span>
+            <span class="rating-tag">🎭 讨好型老好人</span>
+            <span class="rating-tag">🌵 直性子不懂人情</span>
           </div>
         </div>
       </div>
